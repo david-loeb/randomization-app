@@ -1,0 +1,5 @@
+.control-label {font-weight: 600;}
+
+.pretty input:checked~.state.p-success label:after, .pretty.p-toggle .state.p-success label:after {
+  background-color: #00cc99 !important;
+}
