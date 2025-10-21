@@ -58,7 +58,7 @@ make_plot_bal <- function(df) {
         )
       x_lab <- c(
         "Stress", "Value Edu", "Enjoy Read", "Prob\nParticip. RAH",
-        "Complier", "Always Take", "Never Take"
+        "Complier", "Always Taker", "Never Taker"
       )
     } else {
       df <- df |>
