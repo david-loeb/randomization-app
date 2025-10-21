@@ -43,6 +43,11 @@ ui <- page_navbar(
       selected = "Observed",
       status = 'success'
     ),
+    prettyCheckbox(
+      inputId = "strata",
+      label = "Subgroups",
+      status = 'success'
+    ),
     width = 160,
     bg = "#2b2f36"
   ),
@@ -184,6 +189,7 @@ server <- function(input, output) {
         mutate(df_plt_bal, omni = 1)
       }
     )
+    df_plt_bal <- if (input$strata) mutate(df_plt_bal, strata = 1) else df_plt_bal
     make_plot_bal(df_plt_bal)  # Plot
   })
   

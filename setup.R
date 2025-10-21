@@ -48,7 +48,7 @@ make_plot_ate <- function(df) {
 
 make_plot_bal <- function(df) {
   if ('omni' %in% names(df)) {  # Actual plots for omniscient verison
-    if ('cace' %in% names(df)) {  # Filter vars to plot & create their labels
+    if ('strata' %in% names(df)) {  # Filter vars to plot & create their labels
       df <- df |>
         filter(
           var %in% c(
@@ -70,14 +70,24 @@ make_plot_bal <- function(df) {
       x_lab <- c("Stress", "Value Edu", "Enjoy Read", "Prob\nParticip. RAH")
     }
     
-    if ('descr' %in% df$scenario) {  # Legend & plot titles
+    if ('descr' %in% df$scenario) {  # Legend labels
       leg_lab <- 'Particip.\nin RAH'
-      title <- "Average Characteristics by Participation in Read-At-Home"
-    } else if ('cace' %in% names(df)) {
-      leg_lab <- 'Assign\nto RAH'
-      title <- "Avg Complier Chars & Subgroup Shares by Assignment to Read-At-Home"
     } else {
       leg_lab <- 'Assign\nto RAH'
+    }
+    if ('strata' %in% names(df)) {  # Plot titles
+      if ('descr' %in% df$scenario) {
+        title <- "Average Chars & Subgroup Shares by Participation in Read-At-Home"
+      } else if ('cace' %in% names(df)) {
+        title <- "Avg Complier Chars & Subgroup Shares by Assignment to Read-At-Home"
+      } else {
+        title <- "Average Chars & Subgroup Shares by Assignment to Read-At-Home"
+      }
+    } else if ('descr' %in% df$scenario) {
+      title <- "Average Characteristics by Participation in Read-At-Home"
+    } else if ('cace' %in% names(df)) {
+      title <- "Avg Complier Characteristics by Assignment to Read-At-Home"
+    } else {
       title <- "Average Characteristics by Assignment to Read-At-Home"
     }
     
